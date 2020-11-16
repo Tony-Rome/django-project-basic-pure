@@ -1,0 +1,28 @@
+{% block headline %}AUTH PAGE{% endblock %}
+<h1>WELCOME TO HOPSCOTCH</h1>
+
+<div class="option_auth">
+    <input type="button" value="login" onclick="login()">
+    <input type="button" value="register" onclick="register()">
+</div>
+
+<div class="option_selected">
+    <div id="login_hopscotch" style="display: none;">
+        <h1>LOGEAR</h1>
+    </div>
+    <div id="register_hopscotch" style="display: none;">
+        <h1>REGISTRAR</h1>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function register(){
+        document.getElementById('login_hopscotch').style.display='none';
+        document.getElementById('register_hopscotch').style.display='block';
+    }
+
+    function login(){
+         document.getElementById('login_hopscotch').style.display='block';
+        document.getElementById('register_hopscotch').style.display='none';
+    }
+</script>

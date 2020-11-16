@@ -1,0 +1,21 @@
+.nav{
+    background-color: red;
+}
+
+.nav-ul{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-li{
+}
+
+.button-logout{
+
+}
+
+.container{
+    display: flex;
+
+}

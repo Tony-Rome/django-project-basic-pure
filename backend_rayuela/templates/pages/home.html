@@ -1,0 +1,35 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+
+<nav class="nav">
+    <div class="nav-ul">
+        <p class="nav-li">
+            <a clas="nav-link" href="">PUBLIC</a>
+        </p>
+        <p>
+            <a class="nav-link" href="{% url 'stories-urls:story-home' %}">STORIES</a>
+        </p>
+        <p>
+            <a class="nav-link" href="{% url 'hopscotch-urls:hopscotch-home' %}">HOPSCOTCH</a>
+        </p>
+        <p>
+            <a class="'nav-link" href="{% url 'stories-routes-urls:stories-routes-home'%}">STORIES ROUTES</a>
+        </p>
+        <p>
+            <a class="nav-link" href="{% url 'accounts-urls:writer-profile' %}">PROFILE</a>
+        </p>
+        <p>
+            <div class="button-logout">
+            <form action="{% url 'accounts-urls:logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">LOGOUT</button>
+            </form>
+            </div>
+        </p>
+    </div>
+</nav>
+<h1>WELCOME TO RAYUELA</h1>
+<p>{{user.first_name}}</p>
+{% block content_login %}
+{% endblock %}
+{% endblock %}

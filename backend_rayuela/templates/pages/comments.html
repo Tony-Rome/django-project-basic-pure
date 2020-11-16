@@ -1,0 +1,55 @@
+{% extends 'pages/home.html' %}
+{% block content_login %}
+    <h1>HAY COMENTARIOS</h1>
+ <div class="all-comments-container" style="text-align: center;">
+        <div class="info-comments">
+            <p>ESPACIO PARA COLOCAR ESTADISTICA DE COMENTARIOS(?)</p>
+        </div>
+        <div class="post-comment">
+            <p>ESPACIO PARA CREAR COMENTARIO</p>
+             <form method="POST" action="{% url 'writers-urls:create-comment' %}">
+                <p>
+                    {% csrf_token %}
+                    <div>ID: {{ story_route.id }}</div>
+                    {% for field in form.visible_fields %}
+                        <div class="field-container" style="margin-top:2rem; margin-bottom: 2rem;">
+                            <div>
+                                {{ field.label_tag }}
+                            </div>
+                            <div>
+                                {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </p>
+                <button name="id" value={{ id_story_route }} class="button" type="submit">POSTEAR</button>
+            </form>
+        </div>
+        <div>
+            <p>ESPACIO PARA TODO SLOS COMENTARIOS POSTEADOS DEL ID</p>
+            <div>
+                <p>VER ARBOL DE COMENTARIOS</p>
+                <form method="POST" action="{% url 'writers-urls:all-comments-tree' %}">
+                    {% csrf_token %}
+                    <button>VER ARBOL</button>
+                </form>
+            </div>
+            {% if comments %}
+                {% for comment in comments %}
+                    <div style="text-align: center; margin: auto; border-style: solid; border-width: 1px; border-radius: 50px;">
+                        <div>Story route: {{ comment.story_route.id }}</div>
+                        <div>{{ comment.content }}</div>
+                        <form method="POST" action="{% url 'writers-urls:create-reply-comment' %}">
+                            {% csrf_token %}
+                            <input name="content" />
+                            <input type="hidden" name="id_story_route" value="{{ comment.story_route.id }}" />
+                            <button name="id_reply" value={{ comment.id }} class="button" type="submit">reply comment</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h3>SIN COMENTARIOS TODAVIA</h3>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'pages/home.html' %}
+{% block content_login %}
+<h1>STORY PAGE</h1>
+
+{% if form %}
+<div class="form-container" style=" width: 100%; display:flex; justify-content: center; margin-left: auto; margin-right: auto;">
+    <form method="POST">
+        <p>
+            {% csrf_token %}
+            {% for field in form.visible_fields %}
+                <div class="field-container" style="margin-top:2rem; margin-bottom: 2rem;">
+                    <div>
+                        {{ field.label_tag }}
+                    </div>
+                    <div>
+                        {{ field }}
+                    </div>
+                </div>
+            {% endfor %}
+        </p>
+        <button class="button" type="submit">Registrar</button>
+    </form>
+</div>
+{% else %}
+<div class="container-create" style="justify-content:center; display:flex ;width:100%;">
+    <div class="button-logout">
+        <form action="{% url 'stories-urls:story-create' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">CREAR HISTORIA</button>
+        </form>
+    </div>
+</div>
+<div class="story_container" style="width: 100%; text-align:center;">
+    <div class="for-container" style="display: inline-block; width: 45rem;">
+
+    {% for story in stories %}
+     <div class="container" style="justify-content: center; display: flex; margin-top: 2rem; margin-bottom: 2rem; height: 15rem; border-style: solid; border-width: 1px; border-radius: 50px;">
+        <div class="story" style="position: relative; width: 23rem; border-style: solid; border-width: 1px; border-radius: 50px;">
+            <div class="title_story" style="margin-top: 2rem;">{{ story.title }}</div>
+            <div class="body_story" style="text-align: justify; text-justify: inter-word; margin-top: 2rem;">{{ story.body }}</div>
+            <small class="timestamp" style="text-align: right; position: absolute; bottom: 0;">{{ story.timestamp }}</small>
+        </div>
+
+        <div class="hashtag-container"  style=" width: 5rem; justify-content: center; flex-direction: column; margin-left: 5rem; margin-top: auto; margin-bottom: auto; border-style: solid; border-width: 1px; border-radius: 50px;">
+          <p>HASHTAGS</p>
+        {% for hashtag in story.hashtag_set.all %}
+            <div class="hashtag" style="">{{ hashtag.hashtag }}</div>
+        {% endfor %}
+
+        </div>
+     </div>
+    {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

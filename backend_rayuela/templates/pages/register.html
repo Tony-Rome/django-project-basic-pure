@@ -1,0 +1,22 @@
+{% extends 'pages/preview.html' %}
+{% block auth %}
+<h1>FORM</h1>
+<form method="POST">
+    <p>
+        {% csrf_token %}
+        {% for field in form.visible_fields %}
+            <div>
+                {{ field.errors }}
+                <div>
+                    {{ field.label_tag }}
+                </div>
+                <div>
+                    {{ field }}
+                </div>
+            </div>
+        {% endfor %}
+    </p>
+    <button class="button" type="submit">Registrar</button>
+
+</form>
+{% endblock %}

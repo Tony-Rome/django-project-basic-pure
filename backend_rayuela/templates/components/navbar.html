@@ -1,0 +1,25 @@
+<nav class="nav">
+    <ul class="nav-ul">
+        <li class="nav-li">
+            <a clas="nav-link" href="">HOME</a>
+        </li>
+        <li>
+            <a class="nav-link" href="">STORIES</a>
+        </li>
+        <li>
+            <a class="nav-link" href="{% url 'hopscotch-urls:hopscotch-home' %}">HOPSCOTCH</a>
+        </li>
+        <li>
+            <a class="'nav-link" href="{% url 'stories-urls:stories-routes-home'%}">STORIES ROUTES</a>
+        </li>
+        <li>
+            <a class="nav-link" href="{% url 'accounts-urls:writer-profile' %}">PROFILE</a>
+        </li>
+        <li>
+            <form action="{% url 'accounts-urls:logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">LOGOUT</button>
+            </form>
+        </li>
+    </ul>
+</nav>

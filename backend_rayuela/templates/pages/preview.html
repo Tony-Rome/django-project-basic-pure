@@ -1,0 +1,20 @@
+{% extends 'pages/base.html' %}
+{% block headline%}Bienvenido a Rayuela{% endblock %}
+
+{% block content %}
+<h1>BIENVENIDO A RAYUELA</h1>
+     {% if user.is_anonymous %}
+
+            <ul>
+                <li>
+                    <a href="{% url 'accounts-urls:login' %}">LOGIN</a>
+                    <a href="{% url 'accounts-urls:create-user' %}">REGISTER</a>
+                </li>
+            </ul>
+            {% block auth %}
+            {% endblock %}
+        {% else  %}
+            <meta http-equiv="REFRESH" content="0;url={% url 'accounts-urls:writer-home' %}">
+        {% endif %}
+{% endblock %}
+

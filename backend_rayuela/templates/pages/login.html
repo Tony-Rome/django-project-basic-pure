@@ -1,0 +1,21 @@
+{% extends 'pages/preview.html' %}
+{% block auth %}
+<h1>LOGIN PAGE</h1>
+<div>
+    <form method="POST">
+        {% csrf_token %}
+         {% for field in form.visible_fields %}
+            <div>
+                {{ field.errors }}
+                <div>
+                    {{ field.label_tag }}
+                </div>
+                <div>
+                    {{ field }}
+                </div>
+            </div>
+        {% endfor %}
+       <button clas="login-button" type="submit">Entrar</button>
+    </form>
+</div>
+{% endblock %}
